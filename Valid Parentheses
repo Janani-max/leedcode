@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        unordered_map<char, char>mp;
+        stack<char>st;
+        mp[')'] = '(';
+        mp['}'] = '{';
+        mp[']'] = '[';
+        for(auto i : s){
+            if(st.size() == 0)
+            st.push(i);
+            else{
+                if(st.top() == mp[i]){
+                    st.pop();
+                }
+                else{
+                    st.push(i);
+                }
+            }
+
+        }
+        return st.size() == 0;
+    }
+};
