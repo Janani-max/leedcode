@@ -1,0 +1,25 @@
+class Solution {
+public:
+    // Function to check if two strings are isomorphic
+    bool isIsomorphic(string s, string t) {
+        // Arrays to store the last seen index of characters in s and t
+        int s_array[256] = {0}; // Assuming ASCII characters, so array size is 256
+        int t_array[256] = {0};
+        
+        int n = s.size(); // Length of the strings
+        
+        // Loop through each character in the strings
+        for (int i = 0; i < n; i++) {
+            // If the mapping between the characters in s and t is not the same as before
+            if (s_array[s[i]] != t_array[t[i]])
+                return false; // Return false, as the strings are not isomorphic
+            
+            // Update the mapping for the characters
+            s_array[s[i]] = i + 1; // Adding 1 to index to differentiate from default value 0
+            t_array[t[i]] = i + 1;
+        }
+        
+        // If all characters are mapped consistently, return true
+        return true;
+    }
+};
