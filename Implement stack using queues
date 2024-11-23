@@ -1,0 +1,83 @@
+/* 
+class MyStack {
+private: 
+    queue<int> q;
+public:
+    MyStack() {
+        
+    }
+    
+    void push(int x) {
+        if( q.size() <= 0 )
+        {
+            q.push(x);
+        }   
+        else
+        {
+            int n = q.size();
+            q.push(x);
+            while( n-- )
+            {
+                q.push(q.front());
+                q.pop();
+            }
+        }
+    }
+    
+    int pop() {
+        int p = q.front();
+        q.pop();
+        return p;
+    }
+    
+    int top() {
+        int p = q.front();
+        return p;
+    }
+    
+    bool empty() {
+        return q.size() == 0; 
+    }
+}; 
+*/
+
+class MyStack {
+private: 
+    queue<int> q;
+public:
+    MyStack() {
+        
+    }
+    
+    void push(int x) {
+        if( q.size() <= 0 )
+        {
+            q.push(x);
+        }   
+        else
+        {
+            int n = q.size();
+            q.push(x);
+            while( n-- )
+            {
+                q.push(q.front());
+                q.pop();
+            }
+        }
+    }
+    
+    int pop() {
+        int p = q.front();
+        q.pop();
+        return p;
+    }
+    
+    int top() {
+        int p = q.front();
+        return p;
+    }
+    
+    bool empty() {
+        return q.size() == 0; 
+    }
+};
