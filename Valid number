@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool isNumber(string s) {
+        int n = s.length();
+        bool numSeen = false, dotSeen = false, eSeen = false;
+        int i = 0;
+
+        // Remove leading spaces
+        while (i < n && s[i] == ' ') i++;
+        // Remove trailing spaces
+        int j = n - 1;
+        while (j >= 0 && s[j] == ' ') j--;
+
+        // Iterate through the string
+        while (i <= j) {
+            if (isdigit(s[i])) {
+                numSeen = true;  // Valid number seen
+            } else if (s[i] == '+' || s[i] == '-') {
+                // Sign can only appear at the start or after 'e'
+                if (i > 0 && (s[i-1] != 'e' && s[i-1] != 'E')) return false;
+            } else if (s[i] == '.') {
+                // Dot can only appear if not seen before and no 'e' has appeared
+                if (dotSeen || eSeen) return false;
+                dotSeen = true;
+            } else if (s[i] == 'e' || s[i] == 'E') {
+                // 'e' can only appear once and must follow a valid number
+                if (eSeen || !numSeen) return false;
+                eSeen = true;
+                numSeen = false;  // Reset for number after 'e'
+            } else {
+                // Invalid character
+                return false;
+            }
+            i++;
+        }
+
+        return numSeen;  // Must end with a valid number
+    }
+};
