@@ -1,0 +1,32 @@
+class Solution {
+public:
+  ListNode* rotateRight(ListNode* head, int k) {
+    if (!head) return head;
+
+    // Step 1: Find the length of the list and the last node
+    ListNode* tail = head;
+    int length = 1;
+    while (tail->next) {
+      tail = tail->next;
+      length++;
+    }
+
+    // Step 2: Make the list circular
+    tail->next = head;
+
+    // Step 3: Find the new head by calculating the effective rotations needed
+    k = k % length;
+    int steps = length - k;
+
+    // Move `tail` to the new tail position
+    while (steps--) {
+      tail = tail->next;
+    }
+
+    // Step 4: Break the cycle and set the new head
+    ListNode* newHead = tail->next;
+    tail->next = nullptr;
+
+    return newHead;
+  }
+};
