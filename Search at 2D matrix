@@ -1,0 +1,30 @@
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int m = matrix.size();    // Number of rows
+        int n = matrix[0].size(); // Number of columns
+        
+        int left = 0, right = m * n - 1;  // Virtual indices for the flattened matrix
+        
+        while (left <= right) {
+            int mid = (left + right) / 2; // Middle index in the virtual 1D array
+            
+            // Convert mid to row and column indices in the 2D matrix
+            int row = mid / n;
+            int col = mid % n;
+            
+            if (matrix[row][col] == target) {
+                return true;  // Found the target
+            } else if (matrix[row][col] < target) {
+                left = mid + 1;  // Target is in the right half
+            } else {
+                right = mid - 1; // Target is in the left half
+            }
+        }
+        
+        return false;  // Target not found
+    }
+};
