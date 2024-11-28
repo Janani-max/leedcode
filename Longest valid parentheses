@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        int maxSize{};
+        stack<int> st;
+         //initially push -1 so that ')' is singly present ,push index into st
+        st.push(-1);
+
+        for(int i = 0; i < s.size(); i++){
+            if(s[i] == '(')
+                st.push(i);
+            else{
+                st.pop(); //if ')' pop
+                if(st.empty()){   //stack is empty ,push ')' || '('
+                    st.push(i);
+                }
+                else { 
+                    maxSize = max(maxSize, i - st.top()); ////after popping -1 is present, find longest
+                }
+            }
+        }
+    
+        return maxSize;
+    }
+};
