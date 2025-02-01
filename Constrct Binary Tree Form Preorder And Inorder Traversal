@@ -1,0 +1,25 @@
+class Solution:
+    def buildTree(self, preorder, inorder):
+        # Map to store the index of each value in the inorder array
+        inorder_index_map = {val: idx for idx, val in enumerate(inorder)}
+        self.preorder_index = 0  # Tracks the current root in the preorder array
+
+        def construct_tree(left, right):
+            if left > right:
+                return None  # No subtree to construct
+
+            # Get the current root value from preorder and increment the index
+            root_value = preorder[self.preorder_index]
+            self.preorder_index += 1
+            root = TreeNode(root_value)
+
+            # Get the index of the root in the inorder array
+            root_index = inorder_index_map[root_value]
+
+            # Build the left and right subtrees
+            root.left = construct_tree(left, root_index - 1)
+            root.right = construct_tree(root_index + 1, right)
+
+            return root
+
+        return construct_tree(0, len(inorder) - 1)
