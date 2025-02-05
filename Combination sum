@@ -8,13 +8,13 @@ void backtrack(vector<int>&candidates,int target,int curr,vector<vector<int>>&an
         }
         return;
     }
-    //if possible
+    
     if(candidates[curr]<=target){
         temp.push_back(candidates[curr]);
         backtrack(candidates,target-candidates[curr],curr,ans,temp);
         temp.pop_back();
     }
-    //backtrack 
+   
     backtrack(candidates,target,curr+1,ans,temp);
 }
 
