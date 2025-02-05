@@ -1,15 +1,11 @@
 # Write your MySQL query statement below
-/* here i select name as employee because we need to saw emplyee 
-in output*/
+
 select e2.name as employee 
 from 
 employee e1 
-/* here i use inner join to use same table and want some task
-to operate */
+
 inner join employee e2
-/* here i compare employee id with managerId if manager filled is 
-null then i dont want to procced further and if available*/
+
  on e1.id = e2.managerID
-/* i will use this where condition with checking salary of manager
-and employee */
+
  where e1.salary < e2.salary;
