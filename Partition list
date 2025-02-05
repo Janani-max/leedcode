@@ -15,7 +15,7 @@ public:
         ListNode* less = &lessDummy;
         ListNode* greater = &greaterDummy;
 
-        // Traverse the list
+       
         while (head != nullptr) {
             if (head->val < x) {
                 less->next = head;
@@ -27,13 +27,13 @@ public:
             head = head->next;
         }
 
-        // End the list after the last greater node
+
         greater->next = nullptr;
 
-        // Connect the last less node to the first greater node
+       
         less->next = greaterDummy.next;
 
-        // Return the first less node
+        
         return lessDummy.next;
     }
 };
