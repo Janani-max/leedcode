@@ -1,6 +1,6 @@
 class MyQueue {
 public:
-    // pop efficient method
+    
     stack<int>st;
     stack<int>helper;
     MyQueue() {
@@ -8,7 +8,7 @@ public:
     }
     
     void push(int x) { // O(n)
-        // same as push at buttom
+       
         if(st.size()==0) {
             st.push(x);
             return;
@@ -26,17 +26,17 @@ public:
         }
     }
     
-    int pop() { // O(1)
+    int pop() {
         int x=st.top();
         st.pop();
         return x;
     }
     
-    int peek() { // O(1)
+    int peek() {
         return st.top();
     }
     
-    bool empty() {  // O(1)
+    bool empty() {  
        if(st.size()==0) return true;
        else return false; 
     }
@@ -48,11 +48,11 @@ public:
         
     // }
     
-    void push(int x) { // O(1)
+    void push(int x) { 
         st.push(x);
     }
     
-    int pop() { // O(n)
+    int pop() {
         while(st.size()>0){
             helper.push(st.top());
             st.pop();
@@ -66,7 +66,7 @@ public:
         return x;
     }
     
-    int peek() { // O(n)
+    int peek() { 
         while(st.size()>0){
             helper.push(st.top());
             st.pop();
